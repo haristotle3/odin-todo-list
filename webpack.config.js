@@ -1,6 +1,5 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   mode: "development",
@@ -12,7 +11,7 @@ module.exports = {
   },
 
   plugins: [
-    new HtmlWebpackPlugin({
+    new HTMLWebpackPlugin({
       template: "./src/template.html",
     }),
   ],
@@ -36,6 +35,6 @@ module.exports = {
 
   devtool: "eval-source-map",
   devServer: {
-    watchfiles: ["./src/template.html"],
+    watchFiles: ["./src/template.html"],
   },
 };
