@@ -1,0 +1,39 @@
+* {
+  margin: 0;
+  padding: 0;
+  --card-bg-color: #161616;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: white;
+}
+
+body {
+  background-image: url("./assets/background.png");
+  background-color: black;
+  height: 100vh;
+  background-color: black;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.root {
+  display: grid;
+  grid-template-columns: 1.5fr 4fr 4fr;
+  gap: 16px;
+
+  height: 80%;
+  width: 80%;
+}
+
+.root > * {
+  background-color: var(--card-bg-color);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
+}
+
+img[src$="svg"] {
+  height: 19px;
+  width: 19px;
+}
