@@ -6,14 +6,8 @@ export default class ProjectDOMHandler {
     this.taskListDiv = document.createElement("div");
     this.taskListDiv.classList.add("tasks");
 
-    const todoItems = this.project.getAllTodos();
-
-    todoItems.forEach((todoItem) => {
-      const itemDiv = this.createItemDiv(todoItem);
-      this.taskListDiv.appendChild(itemDiv);
-    });
-
     this.root.appendChild(this.taskListDiv);
+    this.refresh();
   }
 
   clearTodoItems() {
@@ -27,7 +21,12 @@ export default class ProjectDOMHandler {
   refresh() {
     this.clearTodoItems();
 
-    
+    const todoItems = this.project.getAllTodos();
+
+    todoItems.forEach((todoItem) => {
+      const itemDiv = this.createItemDiv(todoItem);
+      this.taskListDiv.appendChild(itemDiv);
+    });
   }
 
   createItemDiv(todoItem) {
