@@ -34,7 +34,7 @@ export default class TodoItem {
     this.notes = newNotes;
   }
 
-  getId() {
+  getID() {
     return this.id;
   }
 

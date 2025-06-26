@@ -1,5 +1,4 @@
 import projectIcon from "./assets/project.svg";
-
 export default class ProjectsListDOMHandler {
   constructor(projectList) {
     this.projLists = projectList;
