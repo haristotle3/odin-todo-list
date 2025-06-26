@@ -1,4 +1,5 @@
 import projectIcon from "./assets/project.svg";
+import EventBus from "./EventBus.js";
 export default class ProjectsListDOMHandler {
   constructor(projectList) {
     this.projLists = projectList;
@@ -12,13 +13,14 @@ export default class ProjectsListDOMHandler {
     this.projectHeadIcon.src = projectIcon;
 
     this.projectHeading.appendChild(this.projectHeadIcon);
-    
+
     this.projListDiv = document.createElement("div");
     this.projListDiv.classList.add("project-list");
-    
+
     this.projListDiv.appendChild(this.projectHeading);
     this.root.appendChild(this.projListDiv);
-    
+
+    this.addProjectItemClickHandler();
     this.refresh();
   }
 
@@ -36,8 +38,26 @@ export default class ProjectsListDOMHandler {
       projHeading.dataset.projID = proj.getID();
       this.projListDiv.appendChild(projHeading);
     });
-    
+
     return;
+  }
+
+  getProjectFromID(projectID) {
+    return this.projLists
+      .getAllProjects()
+      .filter((proj) => proj.getID() === projectID)[0];
+  }
+
+  addProjectItemClickHandler() {
+    this.projListDiv.addEventListener("click", (e) => {
+      const projectID = e.target.dataset.projID;
+
+      const clickedProject = this.getProjectFromID(projectID);
+
+      EventBus.dispatchEvent(
+        new CustomEvent("changeProject", { detail: clickedProject })
+      );
+    });
   }
 
   removeProjectTitles() {

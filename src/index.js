@@ -46,6 +46,7 @@ PJ.addTodoItem(
     1
   )
 );
+
 PJ.addTodoItem(
   new TodoItem(
     `Refactor JS Classes`,

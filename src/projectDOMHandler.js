@@ -1,3 +1,4 @@
+import EventBus from "./EventBus";
 export default class ProjectDOMHandler {
   constructor(project) {
     this.project = project;
@@ -7,6 +8,13 @@ export default class ProjectDOMHandler {
     this.taskListDiv.classList.add("tasks");
 
     this.root.appendChild(this.taskListDiv);
+
+    EventBus.addEventListener("changeProject", (e) => {
+      if (!e.detail) return;
+
+      const newProject = e.detail;
+      this.changeCurrentProject(newProject);
+    });
     this.refresh();
   }
 
@@ -32,7 +40,7 @@ export default class ProjectDOMHandler {
 
     todoItems.forEach((todoItem) => {
       const itemDiv = this.createItemDiv(todoItem);
-      this.taskListDiv.appendChild(itemDiv); 
+      this.taskListDiv.appendChild(itemDiv);
     });
 
     return;
