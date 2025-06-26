@@ -4,6 +4,7 @@ import TodoItem from "./todoItem.js";
 import Project from "./project.js";
 import ProjectsList from "./projectsList.js";
 
+import TodoItemDOMHandler from "./todoItemDOMHandler.js";
 import ProjectDOMHandler from "./projectDOMHandler.js";
 import ProjectsListDOMHandler from "./projectsListDOMHandler.js";
 import { format } from "date-fns";
@@ -18,7 +19,7 @@ PJ.addTodoItem(
     `Implement Todo App`,
     `For Odin Project`,
     format(new Date(2025, 6, 26), "dd/MM/yyyy"),
-    1
+    5
   )
 );
 PJ.addTodoItem(
@@ -72,3 +73,4 @@ PL.addProject(PJ4);
 PLDM.refresh();
 
 const TDiv = new ProjectDOMHandler(PJ);
+const TodoDiv = new TodoItemDOMHandler(PJ.getAllTodos()[0]);

@@ -3,8 +3,8 @@ export default class TodoItem {
   constructor(title, description = ``, dueDate = ``, priority = 0) {
     this.id = crypto.randomUUID();
     this.title = title;
-    this.description = description;
     this.dueDate = dueDate;
+    this.description = description;
     this.priority = priority;
     this.notes = ``;
     this.complete = false;

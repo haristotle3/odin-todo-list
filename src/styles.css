@@ -4,6 +4,12 @@
   --card-bg-color: #161616;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   color: white;
+  --priority-5: red;
+  --priority-4: orange;
+  --priority-3: yellow;
+  --priority-2: darkgreen;
+  --priority-1: green;
+  --priority-0: white;
 }
 
 body {
@@ -28,7 +34,7 @@ body {
 
 .root > * {
   background-color: var(--card-bg-color);
-  border-radius: 24px;
+  border-radius: 4px 24px 24px 4px;
   padding: 24px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2);
 }
@@ -57,7 +63,7 @@ img[src$="svg"] {
   padding: 8px;
   margin: 12px;
 
-  border-radius: 8px;
+  border-radius: 2px 8px 8px 2px;
 }
 
 .tasks .todo-item:hover {
@@ -91,4 +97,37 @@ img[src$="svg"] {
   color: rgba(85, 85, 85, 0.85);
   opacity: 0.75;
   text-decoration: line-through;
+}
+
+.task-details div {
+  margin: 16px 0;
+}
+
+.task-details div h6 {
+  font-weight: 100;
+  opacity: 0.5;
+}
+
+.priority-5 {
+  border-left: 4px solid var(--priority-5);
+}
+
+.priority-4 {
+  border-left: 4px solid var(--priority-4);
+}
+
+.priority-3 {
+  border-left: 4px solid var(--priority-3);
+}
+
+.priority-2 {
+  border-left: 4px solid var(--priority-2);
+}
+
+.priority-1 {
+  border-left: 4px solid var(--priority-1);
+}
+
+.priority-0 {
+  border-left: 4px solid var(--priority-0);
 }

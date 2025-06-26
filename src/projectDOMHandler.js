@@ -19,6 +19,8 @@ export default class ProjectDOMHandler {
   createItemDiv(todoItem) {
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("todo-item");
+    const priority = todoItem.getPriority();
+    itemDiv.classList.add(`priority-${priority}`);
 
     const checkButton = document.createElement("button");
     checkButton.role = "checkbox";
