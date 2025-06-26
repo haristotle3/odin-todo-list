@@ -16,4 +16,8 @@ export default class Project {
   removeItem(todoId) {
     this.todoItems = this.todoItems.filter((element) => element.id !== todoId);
   }
+
+  getName() {
+    return this.name;
+  }
 }

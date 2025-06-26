@@ -3,11 +3,11 @@ export default class ProjectsList {
     this.projects = [];
   }
 
-  getProjects() {
+  getAllProjects() {
     return this.projects;
   }
 
-  addProjects(newProject) {
+  addProject(newProject) {
     this.projects.push(newProject);
   }
 
