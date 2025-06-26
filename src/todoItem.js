@@ -1,6 +1,6 @@
 import { format, compareAsc } from "date-fns";
-class TodoItem {
-  constructor(title, description, dueDate, priority) {
+export default class TodoItem {
+  constructor(title, description = ``, dueDate = ``, priority = 0) {
     this.id = crypto.randomUUID();
     this.title = title;
     this.description = description;

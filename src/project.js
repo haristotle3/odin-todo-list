@@ -1,6 +1,10 @@
-class Project {
+export default class Project {
   constructor() {
     this.todoItems = [];
+  }
+
+  getAllTodos() {
+    return this.todoItems;
   }
 
   addTodoItem(newTodo) {
