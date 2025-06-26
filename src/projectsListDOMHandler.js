@@ -4,8 +4,6 @@ export default class ProjectsListDOMHandler {
     this.projLists = projectList;
 
     this.root = document.querySelector(".root");
-    this.projListDiv = document.createElement("div");
-    this.projListDiv.classList.add("project-list");
 
     this.projectHeading = document.createElement("h3");
     this.projectHeading.textContent = "Projects ";
@@ -14,9 +12,13 @@ export default class ProjectsListDOMHandler {
     this.projectHeadIcon.src = projectIcon;
 
     this.projectHeading.appendChild(this.projectHeadIcon);
+    
+    this.projListDiv = document.createElement("div");
+    this.projListDiv.classList.add("project-list");
+    
     this.projListDiv.appendChild(this.projectHeading);
-
     this.root.appendChild(this.projListDiv);
+    
     this.refresh();
   }
 

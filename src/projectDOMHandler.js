@@ -16,6 +16,20 @@ export default class ProjectDOMHandler {
     this.root.appendChild(this.taskListDiv);
   }
 
+  clearTodoItems() {
+    while (this.taskListDiv.lastChild) {
+      this.taskListDiv.removeChild(this.taskListDiv.lastChild);
+    }
+
+    return;
+  }
+
+  refresh() {
+    this.clearTodoItems();
+
+    
+  }
+
   createItemDiv(todoItem) {
     const itemDiv = document.createElement("div");
     itemDiv.classList.add("todo-item");

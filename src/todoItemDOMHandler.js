@@ -6,9 +6,28 @@ export default class TodoItemDOMHandler {
     this.root = document.querySelector(".root");
     this.todoDetailsDiv = document.createElement("div");
     this.todoDetailsDiv.classList.add("task-details");
+
+    this.root.appendChild(this.todoDetailsDiv);
+    this.refresh();
+  }
+
+  changeCurrentTodoItem(newTodoItem) {
+    this.todoItem = newTodoItem;
+    this.refresh();
+  }
+
+  clearTodoDetails() {
+    while (this.todoDetailsDiv.lastChild) {
+      this.todoDetailsDiv.removeChild(this.todoDetailsDiv.lastChild);
+    }
+  }
+
+  refresh() {
+    this.clearTodoDetails();
+
     // priority
     const taskPriority = this.todoItem.getPriority();
-    this.todoDetailsDiv.classList.add(`priority-${taskPriority}`)
+    this.todoDetailsDiv.classList.add(`priority-${taskPriority}`);
     // title
     const todoItemTitle = document.createElement("h2");
     todoItemTitle.textContent = this.todoItem.getTitle();
@@ -18,7 +37,7 @@ export default class TodoItemDOMHandler {
     const dueDateTitle = document.createElement("h6");
     dueDateTitle.textContent = "DUE DATE";
     const dueDate = document.createElement("p");
-    dueDate.textContent = todoItem.getDueDate();
+    dueDate.textContent = this.todoItem.getDueDate();
 
     dueDateDiv.appendChild(dueDateTitle);
     dueDateDiv.appendChild(dueDate);
@@ -28,7 +47,7 @@ export default class TodoItemDOMHandler {
     const descriptionTitle = document.createElement("h6");
     descriptionTitle.textContent = "DESCRIPTION";
     const description = document.createElement("p");
-    description.textContent = todoItem.getDescription();
+    description.textContent = this.todoItem.getDescription();
 
     descriptionDiv.appendChild(descriptionTitle);
     descriptionDiv.appendChild(description);
@@ -48,7 +67,5 @@ export default class TodoItemDOMHandler {
     this.todoDetailsDiv.appendChild(dueDateDiv);
     this.todoDetailsDiv.appendChild(descriptionDiv);
     this.todoDetailsDiv.appendChild(notesDiv);
-
-    this.root.appendChild(this.todoDetailsDiv);
   }
 }
