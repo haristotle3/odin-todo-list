@@ -7,6 +7,7 @@ import ProjectsListDOMHandler from "./projectsListDOMHandler.js";
 const PJ = new Project(`Home`);
 const PJ2 = new Project(`Room`);
 const PJ3 = new Project(`Kitchen`);
+const PJ4 = new Project(`Bedroom`);
 
 const PL = new ProjectsList();
 PL.addProject(PJ);
@@ -14,3 +15,5 @@ PL.addProject(PJ2);
 PL.addProject(PJ3);
 
 const PLDM = new ProjectsListDOMHandler(PL);
+PL.addProject(PJ4);
+PLDM.refresh();

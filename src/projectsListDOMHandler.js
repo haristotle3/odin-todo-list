@@ -9,7 +9,7 @@ export default class ProjectsListDOMHandler {
     this.projListDiv.classList.add("project-list");
 
     this.projectHeading = document.createElement("h3");
-    this.projectHeading.textContent = "Projects";
+    this.projectHeading.textContent = "Projects ";
 
     this.projectHeadIcon = document.createElement("img");
     this.projectHeadIcon.src = projectIcon;
@@ -26,14 +26,13 @@ export default class ProjectsListDOMHandler {
     this.removeProjectTitles();
 
     // get all project titles
-    const projectTitles = this.projLists
-      .getAllProjects()
-      .map((proj) => proj.getName());
+    const projectTitles = this.projLists.getAllProjects();
 
     // display all project titles in the project-list div
-    projectTitles.forEach((projName) => {
+    projectTitles.forEach((proj) => {
       const projHeading = document.createElement("h5");
-      projHeading.textContent = projName;
+      projHeading.textContent = proj.getName();
+      projHeading.dataset.projID = proj.getID();
       this.projListDiv.appendChild(projHeading);
     });
 

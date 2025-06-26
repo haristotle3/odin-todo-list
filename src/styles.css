@@ -37,3 +37,15 @@ img[src$="svg"] {
   height: 19px;
   width: 19px;
 }
+
+.project-list > h5 {
+  margin: 18px 0;
+  padding: 4px;
+  font-weight: 100;
+  border-radius: 8px;
+}
+
+.project-list > h5:hover {
+  background-color: rgba(85, 85, 85, 0.85);
+  cursor: pointer;
+}
