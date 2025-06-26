@@ -1,5 +1,6 @@
 export default class Project {
-  constructor() {
+  constructor(name) {
+    this.name = name;
     this.todoItems = [];
   }
 
