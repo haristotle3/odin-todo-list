@@ -1,6 +1,7 @@
 import { format, compareAsc } from "date-fns";
 class TodoItem {
   constructor(title, description, dueDate, priority) {
+    this.id = crypto.randomUUID();
     this.title = title;
     this.description = description;
     this.dueDate = dueDate;
@@ -31,6 +32,10 @@ class TodoItem {
 
   updateNotes(newNotes) {
     this.notes = newNotes;
+  }
+
+  getId() {
+    return this.id;
   }
 
   getTitle() {
