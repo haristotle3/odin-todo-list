@@ -11,10 +11,12 @@ export default class Project {
 
   addTodoItem(newTodo) {
     this.todoItems.push(newTodo);
+    return;
   }
 
   removeItem(todoId) {
     this.todoItems = this.todoItems.filter((element) => element.id !== todoId);
+    return;
   }
 
   getID() {

@@ -9,9 +9,11 @@ export default class ProjectsList {
 
   addProject(newProject) {
     this.projects.push(newProject);
+    return;
   }
 
   removeProject(projectId) {
     this.projects = this.projects.filter((project) => project.id !== projectId);
+    return;
   }
 }

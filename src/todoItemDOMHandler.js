@@ -14,12 +14,14 @@ export default class TodoItemDOMHandler {
   changeCurrentTodoItem(newTodoItem) {
     this.todoItem = newTodoItem;
     this.refresh();
+    return;
   }
 
   clearTodoDetails() {
     while (this.todoDetailsDiv.lastChild) {
       this.todoDetailsDiv.removeChild(this.todoDetailsDiv.lastChild);
     }
+    return;
   }
 
   refresh() {
@@ -67,5 +69,6 @@ export default class TodoItemDOMHandler {
     this.todoDetailsDiv.appendChild(dueDateDiv);
     this.todoDetailsDiv.appendChild(descriptionDiv);
     this.todoDetailsDiv.appendChild(notesDiv);
+    return;
   }
 }

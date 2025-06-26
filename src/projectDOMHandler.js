@@ -13,6 +13,8 @@ export default class ProjectDOMHandler {
   changeCurrentProject(newProject) {
     this.project = newProject;
     this.refresh();
+
+    return;
   }
 
   clearTodoItems() {
@@ -32,6 +34,8 @@ export default class ProjectDOMHandler {
       const itemDiv = this.createItemDiv(todoItem);
       this.taskListDiv.appendChild(itemDiv);
     });
+
+    return;
   }
 
   createItemDiv(todoItem) {
