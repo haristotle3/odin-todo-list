@@ -32,7 +32,7 @@ export default class ProjectDOMHandler {
 
     todoItems.forEach((todoItem) => {
       const itemDiv = this.createItemDiv(todoItem);
-      this.taskListDiv.appendChild(itemDiv);
+      this.taskListDiv.appendChild(itemDiv); 
     });
 
     return;

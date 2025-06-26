@@ -36,7 +36,7 @@ export default class ProjectsListDOMHandler {
       projHeading.dataset.projID = proj.getID();
       this.projListDiv.appendChild(projHeading);
     });
-
+    
     return;
   }
 
