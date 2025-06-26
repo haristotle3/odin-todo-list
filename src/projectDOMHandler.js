@@ -10,6 +10,11 @@ export default class ProjectDOMHandler {
     this.refresh();
   }
 
+  changeCurrentProject(newProject) {
+    this.project = newProject;
+    this.refresh();
+  }
+
   clearTodoItems() {
     while (this.taskListDiv.lastChild) {
       this.taskListDiv.removeChild(this.taskListDiv.lastChild);
