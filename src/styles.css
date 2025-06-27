@@ -84,6 +84,8 @@ img[src$="svg"] {
 .tasks .todo-item h5 {
   font-weight: 100;
   border-radius: 8px;
+  font-size: 20px;
+  pointer-events: none;
 }
 
 .tasks .todo-item.checked > button {

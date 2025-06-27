@@ -1,3 +1,5 @@
+import EventBus from "./EventBus";
+
 export default class TodoItemDOMHandler {
   constructor(todoItem) {
     this.todoItem = todoItem;
@@ -6,6 +8,11 @@ export default class TodoItemDOMHandler {
     this.root = document.querySelector(".root");
     this.todoDetailsDiv = document.createElement("div");
     this.todoDetailsDiv.classList.add("task-details");
+
+    EventBus.addEventListener("changeTodoItem", (e) => {
+      const newTodoItem = e.detail;
+      this.changeCurrentTodoItem(newTodoItem);
+    });
 
     this.root.appendChild(this.todoDetailsDiv);
     this.refresh();
@@ -29,7 +36,18 @@ export default class TodoItemDOMHandler {
 
     // priority
     const taskPriority = this.todoItem.getPriority();
+    // remove old priorities
+    this.todoDetailsDiv.classList.remove(
+      `priority-0`,
+      `priority-1`,
+      `priority-2`,
+      `priority-3`,
+      `priority-4`,
+      `priority-5`
+    );
+    // add new priority
     this.todoDetailsDiv.classList.add(`priority-${taskPriority}`);
+
     // title
     const todoItemTitle = document.createElement("h2");
     todoItemTitle.textContent = this.todoItem.getTitle();

@@ -15,6 +15,8 @@ export default class ProjectDOMHandler {
       const newProject = e.detail;
       this.changeCurrentProject(newProject);
     });
+
+    this.addTodoItemClickHandler();
     this.refresh();
   }
 
@@ -52,6 +54,8 @@ export default class ProjectDOMHandler {
     const priority = todoItem.getPriority();
     itemDiv.classList.add(`priority-${priority}`);
 
+    itemDiv.dataset.ID = todoItem.getID();
+
     const checkButton = document.createElement("button");
     checkButton.role = "checkbox";
     checkButton.id = todoItem.getID();
@@ -62,5 +66,20 @@ export default class ProjectDOMHandler {
     itemDiv.appendChild(checkButton);
     itemDiv.appendChild(itemTitle);
     return itemDiv;
+  }
+
+  addTodoItemClickHandler() {
+    this.taskListDiv.addEventListener("click", (e) => {
+      const todoItemID = e.target.dataset.ID;
+      if (!todoItemID) return;
+
+      const clickedTodoItem = this.project
+        .getAllTodos()
+        .filter((ele) => ele.getID() === todoItemID)[0];
+
+      EventBus.dispatchEvent(
+        new CustomEvent("changeTodoItem", { detail: clickedTodoItem })
+      );
+    });
   }
 }

@@ -55,12 +55,22 @@ PJ.addTodoItem(
     2
   )
 );
+
+PJ3.addTodoItem(
+  new TodoItem(
+    `Refactor JS2 Classes`,
+    `Improve structure and reusability`,
+    format(new Date(2025, 6, 30), "dd/MM/yyyy"),
+    2
+  )
+);
+
 PJ2.addTodoItem(
   new TodoItem(
     `Deploy to GitHub Pages`,
     `Final step before submission`,
     format(new Date(2025, 6, 31), "dd/MM/yyyy"),
-    1
+    0
   )
 );
 
