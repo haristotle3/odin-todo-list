@@ -14,6 +14,12 @@ export default class TodoItemDOMHandler {
       this.changeCurrentTodoItem(newTodoItem);
     });
 
+    EventBus.addEventListener("toggleComplete", (e) => {
+      if (e.detail.id === this.todoItem.getID()) {
+        this.refresh();
+      }
+    });
+
     this.root.appendChild(this.todoDetailsDiv);
     this.refresh();
   }
@@ -48,9 +54,21 @@ export default class TodoItemDOMHandler {
     // add new priority
     this.todoDetailsDiv.classList.add(`priority-${taskPriority}`);
 
+    // title and compeleted checkbox
+    const titleDiv = document.createElement("div");
+    titleDiv.style.display = "flex";
+    titleDiv.style.justifyContent = "space-between";
     // title
     const todoItemTitle = document.createElement("h2");
     todoItemTitle.textContent = this.todoItem.getTitle();
+    // checkbox
+    const checkBox = document.createElement("h2");
+
+    if (this.todoItem.isComplete()) checkBox.textContent = "✅";
+    else checkBox.textContent = "";
+
+    titleDiv.appendChild(todoItemTitle);
+    titleDiv.appendChild(checkBox);
 
     // due date
     const dueDateDiv = document.createElement("div");
@@ -83,7 +101,7 @@ export default class TodoItemDOMHandler {
     notesDiv.appendChild(notes);
 
     // append children
-    this.todoDetailsDiv.appendChild(todoItemTitle);
+    this.todoDetailsDiv.appendChild(titleDiv);
     this.todoDetailsDiv.appendChild(dueDateDiv);
     this.todoDetailsDiv.appendChild(descriptionDiv);
     this.todoDetailsDiv.appendChild(notesDiv);
