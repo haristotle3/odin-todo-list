@@ -1,4 +1,6 @@
 import { format, compareAsc } from "date-fns";
+import EventBus from "./EventBus";
+
 export default class TodoItem {
   constructor(title, description = ``, dueDate = ``, priority = 0) {
     this.id = crypto.randomUUID();
@@ -8,6 +10,12 @@ export default class TodoItem {
     this.priority = priority;
     this.notes = ``;
     this.complete = false;
+
+    EventBus.addEventListener("toggleComplete", (e) => {
+      if (this.id === e.detail.id) {
+        this.toggleComplete();
+      }
+    });
   }
 
   toggleComplete() {

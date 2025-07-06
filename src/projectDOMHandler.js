@@ -54,11 +54,22 @@ export default class ProjectDOMHandler {
     const priority = todoItem.getPriority();
     itemDiv.classList.add(`priority-${priority}`);
 
+    if (todoItem.isComplete()) {
+      itemDiv.classList.add("completed");
+    }
+
     itemDiv.dataset.ID = todoItem.getID();
 
     const checkButton = document.createElement("button");
     checkButton.role = "checkbox";
     checkButton.id = todoItem.getID();
+
+    checkButton.addEventListener("click", () => {
+      EventBus.dispatchEvent(
+        new CustomEvent("toggleComplete", { detail: { id: todoItem.getID() } })
+      );
+      itemDiv.classList.toggle("completed");
+    });
 
     const itemTitle = document.createElement("h5");
     itemTitle.textContent = todoItem.getTitle();

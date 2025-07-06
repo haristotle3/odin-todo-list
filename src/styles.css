@@ -101,6 +101,16 @@ img[src$="svg"] {
   text-decoration: line-through;
 }
 
+.tasks .todo-item.completed {
+  text-decoration: line-through;
+  opacity: 0.4;
+}
+
+.tasks .todo-item.completed button{
+  background-color: white;
+}
+
+
 .task-details div {
   margin: 16px 0;
 }
