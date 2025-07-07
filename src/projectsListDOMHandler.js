@@ -20,15 +20,29 @@ export default class ProjectsListDOMHandler {
     this.projectsOnlyDiv = document.createElement("div");
     this.projectsOnlyDiv.classList.add("project-list");
 
+    this.addProjectForm = document.createElement("form");
+    this.projNameInput = document.createElement("input");
+    this.projNameInput.type = "text";
+    this.projNameInput.id = "proj-name";
+    this.projNameInput.placeholder = "Project Name";
+
+    this.projSubmitButton = document.createElement("input");
+    this.projSubmitButton.type = "submit";
+
+    this.addProjectForm.appendChild(this.projNameInput);
+    this.addProjectForm.appendChild(this.projSubmitButton);
+    this.addProjectForm.classList.add("invisible");
+
     this.addProjectsButton = document.createElement("button");
-    this.addProjectsButton.textContent = "+ Add Project"
+    this.addProjectsButton.textContent = "+ Add Project";
 
     this.addProjectsButton.addEventListener("click", () => {
-      
-    })
+      this.addProjectForm.classList.toggle("invisible");
+    });
 
     this.projListDiv.appendChild(this.projectHeading);
     this.projListDiv.appendChild(this.projectsOnlyDiv);
+    this.projListDiv.appendChild(this.addProjectForm);
     this.projListDiv.appendChild(this.addProjectsButton);
     this.root.appendChild(this.projListDiv);
 
