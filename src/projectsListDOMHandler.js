@@ -1,5 +1,6 @@
 import projectIcon from "./assets/project.svg";
 import EventBus from "./EventBus.js";
+import Project from "./project.js";
 export default class ProjectsListDOMHandler {
   constructor(projectList) {
     this.projLists = projectList;
@@ -29,6 +30,11 @@ export default class ProjectsListDOMHandler {
     this.projSubmitButton = document.createElement("input");
     this.projSubmitButton.type = "submit";
 
+    this.addProjectForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      this.projSubmissionHandler();
+    });
+
     this.addProjectForm.appendChild(this.projNameInput);
     this.addProjectForm.appendChild(this.projSubmitButton);
     this.addProjectForm.classList.add("invisible");
@@ -46,7 +52,7 @@ export default class ProjectsListDOMHandler {
     this.projListDiv.appendChild(this.addProjectsButton);
     this.root.appendChild(this.projListDiv);
 
-    this.addProjectItemClickHandler();
+    this.projectItemClickHandler();
     this.refresh();
   }
 
@@ -74,7 +80,7 @@ export default class ProjectsListDOMHandler {
       .filter((proj) => proj.getID() === projectID)[0];
   }
 
-  addProjectItemClickHandler() {
+  projectItemClickHandler() {
     this.projListDiv.addEventListener("click", (e) => {
       const projectID = e.target.dataset.projID;
 
@@ -93,6 +99,20 @@ export default class ProjectsListDOMHandler {
       );
     }
 
+    return;
+  }
+
+  projSubmissionHandler() {
+    const newProjName = this.projNameInput.value;
+    // create project
+    const newProject = new Project(newProjName);
+    // add project to project list
+    this.projLists.addProject(newProject);
+
+    // refresh.
+    this.refresh();
+    this.addProjectForm.reset();
+    this.addProjectForm.classList.toggle("invisible");
     return;
   }
 }

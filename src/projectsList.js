@@ -1,6 +1,9 @@
+import EventBus from "./EventBus";
+
 export default class ProjectsList {
   constructor() {
     this.projects = [];
+
   }
 
   getAllProjects() {
