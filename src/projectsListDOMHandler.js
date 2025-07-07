@@ -15,9 +15,13 @@ export default class ProjectsListDOMHandler {
     this.projectHeading.appendChild(this.projectHeadIcon);
 
     this.projListDiv = document.createElement("div");
-    this.projListDiv.classList.add("project-list");
+    this.projListDiv.classList.add("project-list-container");
+
+    this.projectsOnlyDiv = document.createElement("div");
+    this.projectsOnlyDiv.classList.add("project-list");
 
     this.projListDiv.appendChild(this.projectHeading);
+    this.projListDiv.appendChild(this.projectsOnlyDiv);
     this.root.appendChild(this.projListDiv);
 
     this.addProjectItemClickHandler();
@@ -36,7 +40,7 @@ export default class ProjectsListDOMHandler {
       const projHeading = document.createElement("h5");
       projHeading.textContent = proj.getName();
       projHeading.dataset.projID = proj.getID();
-      this.projListDiv.appendChild(projHeading);
+      this.projectsOnlyDiv.appendChild(projHeading);
     });
 
     return;
@@ -61,14 +65,10 @@ export default class ProjectsListDOMHandler {
   }
 
   removeProjectTitles() {
-    while (this.projListDiv.lastChild) {
-      const removedChild = this.projListDiv.removeChild(
-        this.projListDiv.lastChild
+    while (this.projectsOnlyDiv.lastChild) {
+      const removedChild = this.projectsOnlyDiv.removeChild(
+        this.projectsOnlyDiv.lastChild
       );
-      if (!this.projListDiv.lastChild) {
-        this.projListDiv.appendChild(removedChild);
-        break;
-      }
     }
 
     return;
