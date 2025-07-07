@@ -51,6 +51,30 @@ img[src$="svg"] {
   border-radius: 8px;
 }
 
+.project-list-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-list-container > button {
+  margin-top: auto;
+  background-color: #037be0;
+  padding: 8px 4px;
+  border: none;
+  outline: none;
+  border-radius: 2px 6px 6px 2px;
+}
+
+.project-list-container > button:hover {
+  margin-top: auto;
+  background-color: #004d8b;
+  cursor: pointer;
+  padding: 8px 4px;
+  border: none;
+  outline: none;
+  border-radius: 2px 6px 6px 2px;
+}
+
 .project-list > h5:hover {
   background-color: rgba(85, 85, 85, 0.85);
   cursor: pointer;

@@ -20,8 +20,16 @@ export default class ProjectsListDOMHandler {
     this.projectsOnlyDiv = document.createElement("div");
     this.projectsOnlyDiv.classList.add("project-list");
 
+    this.addProjectsButton = document.createElement("button");
+    this.addProjectsButton.textContent = "+ Add Project"
+
+    this.addProjectsButton.addEventListener("click", () => {
+      
+    })
+
     this.projListDiv.appendChild(this.projectHeading);
     this.projListDiv.appendChild(this.projectsOnlyDiv);
+    this.projListDiv.appendChild(this.addProjectsButton);
     this.root.appendChild(this.projListDiv);
 
     this.addProjectItemClickHandler();
