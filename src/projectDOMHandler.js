@@ -126,6 +126,14 @@ export default class ProjectDOMHandler {
 
     deleteBtn.addEventListener("click", () => {
       this.project.removeItem(deleteBtn.dataset.itemID);
+      EventBus.dispatchEvent(
+        new CustomEvent("deleteTodoItem", {
+          detail: {
+            itemID: deleteBtn.dataset.itemID,
+            firstTodoItem: this.project.todoItems[0],
+          },
+        })
+      );
       this.refresh();
     });
 

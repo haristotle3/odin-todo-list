@@ -21,6 +21,12 @@ export default class TodoItemDOMHandler {
       }
     });
 
+    EventBus.addEventListener("deleteTodoItem", (e) => {
+      if (this.todoItem.getID() !== e.detail.itemID) return;
+
+      this.changeCurrentTodoItem(e.detail.firstTodoItem);
+    });
+
     this.root.appendChild(this.todoDetailsDiv);
     this.refresh();
   }
@@ -40,7 +46,7 @@ export default class TodoItemDOMHandler {
 
   refresh() {
     this.clearTodoDetails();
-
+    if (!this.todoItem) return;
     // priority
     const taskPriority = this.todoItem.getPriority();
     // remove old priorities
