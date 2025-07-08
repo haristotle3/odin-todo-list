@@ -7,6 +7,9 @@ export default class ProjectDOMHandler {
     this.taskListDiv = document.createElement("div");
     this.taskListDiv.classList.add("tasks");
 
+    this.todoItemsContainer = document.createElement("div");
+    
+    this.taskListDiv.appendChild(this.todoItemsContainer);
     this.root.appendChild(this.taskListDiv);
 
     EventBus.addEventListener("changeProject", (e) => {
@@ -38,8 +41,8 @@ export default class ProjectDOMHandler {
   }
 
   clearTodoItems() {
-    while (this.taskListDiv.lastChild) {
-      this.taskListDiv.removeChild(this.taskListDiv.lastChild);
+    while (this.todoItemsContainer.lastChild) {
+      this.todoItemsContainer.removeChild(this.todoItemsContainer.lastChild);
     }
 
     return;
@@ -53,7 +56,7 @@ export default class ProjectDOMHandler {
 
     todoItems.forEach((todoItem) => {
       const itemDiv = this.createItemDiv(todoItem);
-      this.taskListDiv.appendChild(itemDiv);
+      this.todoItemsContainer.appendChild(itemDiv);
     });
 
     return;
@@ -91,7 +94,7 @@ export default class ProjectDOMHandler {
   }
 
   addTodoItemClickHandler() {
-    this.taskListDiv.addEventListener("click", (e) => {
+    this.todoItemsContainer.addEventListener("click", (e) => {
       const todoItemID = e.target.dataset.ID;
       if (!todoItemID) return;
 
