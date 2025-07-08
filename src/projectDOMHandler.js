@@ -109,7 +109,7 @@ export default class ProjectDOMHandler {
     checkButton.role = "checkbox";
     checkButton.id = todoItem.getID();
 
-    checkButton.addEventListener("click", () => {
+    checkButton.addEventListener("click", (e) => {
       EventBus.dispatchEvent(
         new CustomEvent("toggleComplete", { detail: { id: todoItem.getID() } })
       );

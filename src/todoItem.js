@@ -11,11 +11,12 @@ export default class TodoItem {
     this.notes = ``;
     this.complete = false;
 
-    EventBus.addEventListener("toggleComplete", (e) => {
-      if (this.id === e.detail.id) {
-        this.toggleComplete();
-      }
-    });
+    // This wast the cause of race condition.
+    // EventBus.addEventListener("toggleComplete", (e) => {
+    //   if (this.id === e.detail.id) {
+    //     this.toggleComplete();
+    //   }
+    // });
   }
 
   toggleComplete() {
