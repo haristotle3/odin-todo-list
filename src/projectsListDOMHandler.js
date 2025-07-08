@@ -78,6 +78,14 @@ export default class ProjectsListDOMHandler {
 
       deleteBtn.addEventListener("click", () => {
         this.projLists.removeProject(deleteBtn.dataset.projID);
+
+        // projLists contains another projects array
+        // horrible way to do it but it works for now
+        // learning shouldn't stop
+        EventBus.dispatchEvent(
+          new CustomEvent("changeProject", { detail: this.projLists.projects[0] })
+        );
+
         this.refresh();
       });
 

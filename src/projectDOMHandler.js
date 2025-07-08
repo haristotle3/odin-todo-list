@@ -37,7 +37,8 @@ export default class ProjectDOMHandler {
 
   refresh() {
     this.clearTodoItems();
-
+    if (this.project === undefined) return;
+  
     const todoItems = this.project.getAllTodos();
 
     todoItems.forEach((todoItem) => {
