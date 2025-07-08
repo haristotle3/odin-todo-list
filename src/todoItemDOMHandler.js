@@ -44,6 +44,62 @@ export default class TodoItemDOMHandler {
     return;
   }
 
+  createLabel(forAttr, textContent) {
+    const label = document.createElement("label");
+    label.htmlFor = forAttr;
+    label.textContent = textContent;
+
+    return label;
+  }
+
+  createInput(type, name, id) {
+    const input = document.createElement("input");
+    input.type = type;
+    input.name = name;
+    input.id = id;
+
+    return input;
+  }
+
+  createDialogBox() {
+    const dialog = document.createElement("dialog");
+
+    const form = document.createElement("form");
+    form.method = "dialog";
+
+    const title = this.createLabel("title", "Title:");
+    const titleInput = this.createInput("text", "title", "title");
+
+    const dueDate = this.createLabel("date", "Due Date:");
+    const dueDateInput = this.createInput("date", "date", "date");
+
+    const description = this.createLabel("description", "Description:");
+    const descriptionInput = this.createInput(
+      "textarea",
+      "description",
+      "description"
+    );
+
+    const notes = this.createLabel("notes", "Notes");
+    const notesInput = this.createInput("textarea", "notes", "notes");
+
+    const submitBtn = this.createInput("submit");
+
+    form.appendChild(title);
+    form.appendChild(titleInput);
+    form.appendChild(dueDate);
+    form.appendChild(dueDateInput);
+    form.appendChild(description);
+    form.appendChild(descriptionInput);
+    form.appendChild(notes);
+    form.appendChild(notesInput);
+    form.appendChild(submitBtn);
+
+    dialog.appendChild(form);
+
+    return dialog;
+  }
+
   refresh() {
     this.clearTodoDetails();
     if (!this.todoItem) return;
@@ -107,11 +163,20 @@ export default class TodoItemDOMHandler {
     notesDiv.appendChild(notesTitle);
     notesDiv.appendChild(notes);
 
+    // dialog box
+    const dialogBox = this.createDialogBox();
+    // edit button
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+
     // append children
     this.todoDetailsDiv.appendChild(titleDiv);
     this.todoDetailsDiv.appendChild(dueDateDiv);
     this.todoDetailsDiv.appendChild(descriptionDiv);
     this.todoDetailsDiv.appendChild(notesDiv);
+    this.todoDetailsDiv.appendChild(editBtn);
+    this.todoDetailsDiv.appendChild(dialogBox);
+    dialogBox.showModal();
     return;
   }
 }

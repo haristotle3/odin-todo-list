@@ -98,7 +98,8 @@ img[src$="svg"] {
   flex-direction: column;
 }
 
-.project-list-container > button {
+.project-list-container > button,
+.task-details > button {
   /* margin-top: auto; */
   background-color: #037be0;
   padding: 8px 4px;
@@ -107,7 +108,14 @@ img[src$="svg"] {
   border-radius: 2px 6px 6px 2px;
 }
 
-.project-list-container > button:hover {
+.task-details > button {
+  margin-top: auto;
+}
+
+.project-list-container > button:hover,
+.tasks > div:last-child input[type="submit"]:hover,
+dialog form input[type="submit"]:hover,
+.task-details > button:hover {
   background-color: #004d8b;
   cursor: pointer;
 }
@@ -168,7 +176,8 @@ img[src$="svg"] {
   border: 1px solid white;
 }
 
-.tasks > div:last-child input[type="submit"] {
+.tasks > div:last-child input[type="submit"],
+dialog form input[type="submit"] {
   background-color: #037be0;
   padding: 8px 4px;
   border: none;
@@ -230,6 +239,11 @@ img[src$="svg"] {
   background-color: white;
 }
 
+.task-details {
+  display: flex;
+  flex-direction: column;
+}
+
 .task-details div {
   margin: 16px 0;
 }
@@ -265,4 +279,42 @@ img[src$="svg"] {
 
 .invisible > * {
   display: none;
+}
+
+dialog {
+  padding: 12px;
+  outline: 0;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  margin: auto;
+  background-color: rgba(30, 30, 30, 0.75);
+}
+
+dialog form {
+  display: grid;
+  gap: 6px;
+  grid-template-columns: 2fr 4fr;
+  grid-template-rows: repeat(4, 1fr);
+  background-color: rgba(30, 30, 30, 0.75);
+}
+
+dialog form label,
+dialog form input {
+  color: white;
+}
+
+dialog form input[type="submit"] {
+  grid-column: 1 / 3;
+}
+
+dialog form input {
+  background-color: black;
+  outline: none;
+  border: 1px solid white;
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+dialog form input[type="date"] {
+  color: white;
 }
