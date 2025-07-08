@@ -77,13 +77,19 @@ export default class ProjectsListDOMHandler {
       deleteBtn.textContent = "X";
 
       deleteBtn.addEventListener("click", () => {
+        const deletedProjectID = deleteBtn.dataset.projID;
         this.projLists.removeProject(deleteBtn.dataset.projID);
 
         // projLists contains another projects array
         // horrible way to do it but it works for now
         // learning shouldn't stop
         EventBus.dispatchEvent(
-          new CustomEvent("changeProject", { detail: this.projLists.projects[0] })
+          new CustomEvent("deleteProject", {
+            detail: {
+              deletedProjectID,
+              firstProject: this.projLists.projects[0],
+            },
+          })
         );
 
         this.refresh();

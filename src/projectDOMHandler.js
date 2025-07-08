@@ -16,8 +16,18 @@ export default class ProjectDOMHandler {
       this.changeCurrentProject(newProject);
     });
 
+    EventBus.addEventListener("deleteProject", (e) => {
+      if (e.detail.deletedProjectID !== this.project.getID()) return;
+
+      this.changeCurrentProject(e.detail.firstProject);
+    });
+
     this.addTodoItemClickHandler();
     this.refresh();
+  }
+
+  getCurrentProjectID() {
+    return this.project.getID();
   }
 
   changeCurrentProject(newProject) {
@@ -38,7 +48,7 @@ export default class ProjectDOMHandler {
   refresh() {
     this.clearTodoItems();
     if (this.project === undefined) return;
-  
+
     const todoItems = this.project.getAllTodos();
 
     todoItems.forEach((todoItem) => {
