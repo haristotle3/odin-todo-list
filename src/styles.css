@@ -44,11 +44,48 @@ img[src$="svg"] {
   width: 19px;
 }
 
-.project-list > h5 {
+.project-div {
+  display: flex;
+  justify-content: space-between;
+  border-radius: 8px;
   margin: 18px 0;
   padding: 4px;
-  font-weight: 100;
-  border-radius: 8px;
+  
+}
+
+.project-div > h5 {
+ font-weight: 100;
+ align-self: center;
+}
+
+.project-div:hover {
+  background-color: rgba(85, 85, 85, 0.85);
+  cursor: pointer;
+}
+
+
+.project-div > button {
+  height: 2em;
+  width: 2em;
+  align-self: center;
+  font-size: 12px;
+  background-color: black;
+  text-align: center;
+  text-justify: center;
+  border-radius: 50%;
+  opacity: 0.75;
+  border: none;
+  outline: none;
+
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.project-div > button:hover {
+  opacity: 1;
+  color: rgb(255, 255, 255);
+  font-weight:900;
+  background-color: red;
+  border: 2px solid rgb(115, 0, 0);
 }
 
 .project-list-container {
@@ -97,11 +134,6 @@ img[src$="svg"] {
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 2px;
-}
-
-.project-list > h5:hover {
-  background-color: rgba(85, 85, 85, 0.85);
-  cursor: pointer;
 }
 
 .tasks .todo-item {

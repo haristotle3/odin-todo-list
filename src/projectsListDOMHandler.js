@@ -65,10 +65,26 @@ export default class ProjectsListDOMHandler {
 
     // display all project titles in the project-list div
     projectTitles.forEach((proj) => {
+      const projectTitleButtonDiv = document.createElement("div");
+      projectTitleButtonDiv.dataset.projID = proj.getID();
+      projectTitleButtonDiv.classList.add("project-div");
+
       const projHeading = document.createElement("h5");
       projHeading.textContent = proj.getName();
-      projHeading.dataset.projID = proj.getID();
-      this.projectsOnlyDiv.appendChild(projHeading);
+
+      const deleteBtn = document.createElement("button");
+      deleteBtn.dataset.projID = proj.getID();
+      deleteBtn.textContent = "X";
+
+      deleteBtn.addEventListener("click", () => {
+        this.projLists.removeProject(deleteBtn.dataset.projID);
+        this.refresh();
+      });
+
+      projectTitleButtonDiv.appendChild(projHeading);
+      projectTitleButtonDiv.appendChild(deleteBtn);
+
+      this.projectsOnlyDiv.appendChild(projectTitleButtonDiv);
     });
 
     return;
