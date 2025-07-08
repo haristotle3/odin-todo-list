@@ -318,3 +318,8 @@ dialog form input {
 dialog form input[type="date"] {
   color: white;
 }
+
+dialog::backdrop {
+  background-color: black;
+  opacity: 0.5;
+}

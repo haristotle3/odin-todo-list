@@ -1,4 +1,5 @@
 import EventBus from "./EventBus";
+import { format, compareAsc } from "date-fns";
 
 export default class TodoItemDOMHandler {
   constructor(todoItem) {
@@ -61,6 +62,18 @@ export default class TodoItemDOMHandler {
     return input;
   }
 
+  getDateFromString(dueDateString) {
+    const strArr = dueDateString.split("-");
+    const intArr = strArr.map((ele) => Number(ele));
+
+    const newDate = format(
+      new Date(intArr[0], intArr[1] - 1, intArr[2]),
+      "dd/MM/yyyy"
+    );
+
+    return newDate;
+  }
+
   createDialogBox() {
     const dialog = document.createElement("dialog");
 
@@ -72,7 +85,7 @@ export default class TodoItemDOMHandler {
 
     const dueDate = this.createLabel("date", "Due Date:");
     const dueDateInput = this.createInput("date", "date", "date");
-
+    dueDateInput.value = "2003-10-31";
     const description = this.createLabel("description", "Description:");
     const descriptionInput = this.createInput(
       "textarea",
@@ -80,8 +93,14 @@ export default class TodoItemDOMHandler {
       "description"
     );
 
-    const notes = this.createLabel("notes", "Notes");
+    const notes = this.createLabel("notes", "Notes:");
     const notesInput = this.createInput("textarea", "notes", "notes");
+
+    const priority = this.createLabel("priority", "Priority:");
+    const priorityInput = this.createInput("number", "priority", "priority");
+    priorityInput.value = "0";
+    priorityInput.min = "0";
+    priorityInput.max = "5";
 
     const submitBtn = this.createInput("submit");
 
@@ -93,7 +112,32 @@ export default class TodoItemDOMHandler {
     form.appendChild(descriptionInput);
     form.appendChild(notes);
     form.appendChild(notesInput);
+    form.appendChild(priority);
+    form.appendChild(priorityInput);
     form.appendChild(submitBtn);
+
+    form.addEventListener("submit", () => {
+      const newTitle = document.getElementById("title").value;
+      const newDueDateString = document.getElementById("date").value;
+      const newDueDate = this.getDateFromString(newDueDateString);
+      const newDesc = document.getElementById("description").value;
+      const newNotes = document.getElementById("notes").value;
+      const newPriority = document.getElementById("priority").value;
+
+      if (newTitle) this.todoItem.updateTitle(newTitle);
+
+      if (newDesc) this.todoItem.updateDescription(newDesc);
+
+      if (newDueDate) this.todoItem.updateDueDate(newDueDate);
+
+      if (newNotes) this.todoItem.updateNotes(newNotes);
+
+      if (priority) this.todoItem.updatePriority(Number(newPriority));
+
+      this.refresh();
+      EventBus.dispatchEvent(new CustomEvent("refreshRequest"));
+      form.reset();
+    });
 
     dialog.appendChild(form);
 
@@ -169,6 +213,10 @@ export default class TodoItemDOMHandler {
     const editBtn = document.createElement("button");
     editBtn.textContent = "Edit";
 
+    editBtn.addEventListener("click", () => {
+      dialogBox.showModal();
+    });
+
     // append children
     this.todoDetailsDiv.appendChild(titleDiv);
     this.todoDetailsDiv.appendChild(dueDateDiv);
@@ -176,7 +224,6 @@ export default class TodoItemDOMHandler {
     this.todoDetailsDiv.appendChild(notesDiv);
     this.todoDetailsDiv.appendChild(editBtn);
     this.todoDetailsDiv.appendChild(dialogBox);
-    dialogBox.showModal();
     return;
   }
 }

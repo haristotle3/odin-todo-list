@@ -56,6 +56,10 @@ export default class ProjectDOMHandler {
       this.changeCurrentProject(e.detail.firstProject);
     });
 
+    EventBus.addEventListener("refreshRequest", () => {
+      this.refresh();
+    });
+
     this.addTodoItemClickHandler();
     this.refresh();
   }
