@@ -8,8 +8,39 @@ export default class ProjectDOMHandler {
     this.taskListDiv.classList.add("tasks");
 
     this.todoItemsContainer = document.createElement("div");
-    
+
+    this.addTodoDiv = document.createElement("div");
+
+    this.addItemForm = document.createElement("form");
+
+    this.addTodoItemInput = document.createElement("input");
+    this.addTodoItemInput.id = "taskTitle";
+    this.addTodoItemInput.placeholder = "+ Add Task";
+
+    this.addTodoItemButton = document.createElement("input");
+    this.addTodoItemButton.type = "submit";
+    this.addTodoItemButton.value = "+Add";
+
+    this.addItemForm.appendChild(this.addTodoItemInput);
+    this.addItemForm.appendChild(this.addTodoItemButton);
+    this.addTodoDiv.appendChild(this.addItemForm);
+
+    this.addItemForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const taskInput = document.getElementById("taskTitle");
+      if (!taskInput.value) return;
+
+      EventBus.dispatchEvent(
+        new CustomEvent("createTodoItem", {
+          detail: { projID: this.project.getID(), taskTitle: taskInput.value },
+        })
+      );
+      this.addItemForm.reset();
+      this.refresh();
+    });
+
     this.taskListDiv.appendChild(this.todoItemsContainer);
+    this.taskListDiv.appendChild(this.addTodoDiv);
     this.root.appendChild(this.taskListDiv);
 
     EventBus.addEventListener("changeProject", (e) => {

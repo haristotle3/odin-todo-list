@@ -1,8 +1,16 @@
+import EventBus from "./EventBus";
+import TodoItem from "./todoItem";
 export default class Project {
   constructor(name) {
     this.id = crypto.randomUUID();
     this.name = name;
     this.todoItems = [];
+
+    EventBus.addEventListener("createTodoItem", (e) => {
+      if (this.id !== e.detail.projID) return;
+
+      this.addTodoItem(new TodoItem(e.detail.taskTitle));
+    });
   }
 
   getAllTodos() {

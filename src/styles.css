@@ -50,20 +50,18 @@ img[src$="svg"] {
   border-radius: 8px;
   margin: 18px 0;
   padding: 4px;
-  
 }
 
 .project-div > h5 {
- font-weight: 100;
- align-self: center;
- pointer-events: none;
+  font-weight: 100;
+  align-self: center;
+  pointer-events: none;
 }
 
 .project-div:hover {
   background-color: rgba(85, 85, 85, 0.85);
   cursor: pointer;
 }
-
 
 .project-div > button {
   height: 2em;
@@ -84,7 +82,7 @@ img[src$="svg"] {
 .project-div > button:hover {
   opacity: 1;
   color: rgb(255, 255, 255);
-  font-weight:900;
+  font-weight: 900;
   background-color: red;
   border: 2px solid rgb(115, 0, 0);
 }
@@ -135,6 +133,41 @@ img[src$="svg"] {
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.5);
   padding: 2px;
+}
+
+.tasks {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.tasks > div:last-child form {
+  display: grid;
+  grid-template-columns: 8fr 1fr;
+  gap: 4px;
+}
+
+.tasks > div input {
+  background-color: #000000;
+  color: white;
+
+  padding: 8px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  outline: none;
+  border-radius: 2px 6px 6px 2px;
+}
+
+.tasks > div:last-child input:hover,
+.tasks > div:last-child input:focus {
+  border: 1px solid white;
+}
+
+.tasks > div:last-child input[type="submit"] {
+  background-color: #037be0;
+  padding: 8px 4px;
+  border: none;
+  outline: none;
+  border-radius: 2px 6px 6px 2px;
 }
 
 .tasks .todo-item {

@@ -56,6 +56,12 @@ PJ.addTodoItem(
   )
 );
 
+PJ.addTodoItem(
+  new TodoItem(
+    `Test toggle Click`,
+  )
+);
+
 PJ3.addTodoItem(
   new TodoItem(
     `Refactor JS2 Classes`,
