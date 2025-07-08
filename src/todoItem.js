@@ -11,7 +11,7 @@ export default class TodoItem {
     this.notes = ``;
     this.complete = false;
 
-    // This wast the cause of race condition.
+    // This was the cause of race condition.
     // EventBus.addEventListener("toggleComplete", (e) => {
     //   if (this.id === e.detail.id) {
     //     this.toggleComplete();

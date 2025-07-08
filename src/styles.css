@@ -63,7 +63,8 @@ img[src$="svg"] {
   cursor: pointer;
 }
 
-.project-div > button {
+.project-div > button,
+.tasks .todo-item button.delete-task {
   height: 2em;
   width: 2em;
   align-self: center;
@@ -79,12 +80,17 @@ img[src$="svg"] {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.project-div > button:hover {
+.project-div > button:hover,
+.tasks .todo-item button.delete-task:hover {
   opacity: 1;
   color: rgb(255, 255, 255);
   font-weight: 900;
   background-color: red;
   border: 2px solid rgb(115, 0, 0);
+}
+
+.tasks .todo-item button.delete-task {
+  margin-left: auto;
 }
 
 .project-list-container {

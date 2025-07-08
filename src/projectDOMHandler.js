@@ -119,8 +119,19 @@ export default class ProjectDOMHandler {
     const itemTitle = document.createElement("h5");
     itemTitle.textContent = todoItem.getTitle();
 
+    const deleteBtn = document.createElement("button");
+    deleteBtn.classList.add("delete-task");
+    deleteBtn.textContent = "X";
+    deleteBtn.dataset.itemID = todoItem.getID();
+
+    deleteBtn.addEventListener("click", () => {
+      this.project.removeItem(deleteBtn.dataset.itemID);
+      this.refresh();
+    });
+
     itemDiv.appendChild(checkButton);
     itemDiv.appendChild(itemTitle);
+    itemDiv.appendChild(deleteBtn);
     return itemDiv;
   }
 
