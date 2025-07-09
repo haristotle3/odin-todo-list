@@ -10,4 +10,11 @@ const projectList = LSH.initializeProjectList();
 
 const projectListDom = new ProjectsListDOMHandler(projectList);
 const tasksDiv = new ProjectDOMHandler(projectList.getAllProjects()[0]);
-const todoItemDiv = new TodoItemDOMHandler(projectList.getAllProjects()[0].getAllTodos()[0]);
+
+if (projectList.getAllProjects().length) {
+  const todoItemDiv = new TodoItemDOMHandler(
+    projectList.getAllProjects()[0].getAllTodos()[0]
+  );
+} else {
+  const todoItemDiv = new TodoItemDOMHandler();
+}

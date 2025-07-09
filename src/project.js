@@ -19,11 +19,13 @@ export default class Project {
 
   addTodoItem(newTodo) {
     this.todoItems.push(newTodo);
+    EventBus.dispatchEvent(new CustomEvent("updateItem"));
     return;
   }
 
   removeItem(todoId) {
     this.todoItems = this.todoItems.filter((element) => element.id !== todoId);
+    EventBus.dispatchEvent(new CustomEvent("updateItem"));
     return;
   }
 

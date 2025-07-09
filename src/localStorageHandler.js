@@ -14,7 +14,7 @@ export default class LocalStorageHandler {
   initializeProjectList() {
     const newProjectList = new ProjectsList();
     const storedProjectList = JSON.parse(localStorage.getItem("projList"));
-    
+
     if (!storedProjectList) return newProjectList;
 
     storedProjectList.forEach((element) => {
@@ -25,13 +25,14 @@ export default class LocalStorageHandler {
           item.description,
           item.dueDate,
           item.priority,
+          item.notes,
           item.id
         );
         newProject.addTodoItem(newTodoItem);
       });
       newProjectList.addProject(newProject);
     });
-    // console.log(newProjectList)
+
     return newProjectList;
   }
 }

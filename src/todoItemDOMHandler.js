@@ -136,11 +136,11 @@ export default class TodoItemDOMHandler {
 
       this.refresh();
       EventBus.dispatchEvent(new CustomEvent("refreshRequest"));
+      EventBus.dispatchEvent(new CustomEvent("updateItem"));
       form.reset();
     });
 
     dialog.appendChild(form);
-
     return dialog;
   }
 
