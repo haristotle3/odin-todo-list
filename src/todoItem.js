@@ -2,7 +2,7 @@ import { format, compareAsc } from "date-fns";
 import EventBus from "./EventBus";
 
 export default class TodoItem {
-  constructor(id, title, description = ``, dueDate = ``, priority = 0) {
+  constructor(title, description = ``, dueDate = ``, priority = 0, id) {
     this.id = id || crypto.randomUUID();
     this.title = title;
     this.dueDate = dueDate;
