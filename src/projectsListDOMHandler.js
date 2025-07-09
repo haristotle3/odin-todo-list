@@ -98,6 +98,9 @@ export default class ProjectsListDOMHandler {
       projectTitleButtonDiv.appendChild(projHeading);
       projectTitleButtonDiv.appendChild(deleteBtn);
 
+      if (!document.querySelector(".current-project"))
+        projectTitleButtonDiv.classList.toggle("current-project");
+
       this.projectsOnlyDiv.appendChild(projectTitleButtonDiv);
     });
 
@@ -112,7 +115,14 @@ export default class ProjectsListDOMHandler {
 
   projectItemClickHandler() {
     this.projListDiv.addEventListener("click", (e) => {
+      if (!e.target.dataset.projID) return;
+
+      const previouslyCurrentProject =
+        document.querySelector(".current-project");
+      previouslyCurrentProject.classList.toggle("current-project");
+
       const projectID = e.target.dataset.projID;
+      e.target.classList.toggle("current-project");
 
       const clickedProject = this.getProjectFromID(projectID);
 
@@ -138,7 +148,9 @@ export default class ProjectsListDOMHandler {
     const newProject = new Project(newProjName);
     // add project to project list
     this.projLists.addProject(newProject);
-
+    EventBus.dispatchEvent(
+      new CustomEvent("changeProject", { detail: newProject })
+    );
     // refresh.
     this.refresh();
     this.addProjectForm.reset();

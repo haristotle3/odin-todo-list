@@ -89,6 +89,11 @@ img[src$="svg"] {
   border: 2px solid rgb(115, 0, 0);
 }
 
+.project-div.current-project {
+  border-left: 2px solid #037be0;
+  border-radius: 1px 8px 8px 1px;
+}
+
 .tasks .todo-item button.delete-task {
   margin-left: auto;
 }
