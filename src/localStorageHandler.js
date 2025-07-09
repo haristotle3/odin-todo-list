@@ -26,6 +26,7 @@ export default class LocalStorageHandler {
           item.dueDate,
           item.priority,
           item.notes,
+          item.complete,
           item.id
         );
         newProject.addTodoItem(newTodoItem);

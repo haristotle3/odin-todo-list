@@ -19,6 +19,7 @@ export default class TodoItemDOMHandler {
       if (e.detail.id === this.todoItem.getID()) {
         this.todoItem.toggleComplete();
         this.refresh();
+        EventBus.dispatchEvent(new CustomEvent("updateItem"));
       }
     });
 

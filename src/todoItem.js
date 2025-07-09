@@ -2,14 +2,14 @@ import { format, compareAsc } from "date-fns";
 import EventBus from "./EventBus";
 
 export default class TodoItem {
-  constructor(title, description = ``, dueDate = ``, priority = 0, notes = ``, id) {
+  constructor(title, description = ``, dueDate = ``, priority = 0, notes = ``, comepletedStatus = false, id) {
     this.id = id || crypto.randomUUID();
     this.title = title;
     this.dueDate = dueDate;
     this.description = description;
     this.priority = priority;
     this.notes = notes;
-    this.complete = false;
+    this.complete = comepletedStatus;
 
     // This was the cause of race condition.
     // EventBus.addEventListener("toggleComplete", (e) => {
@@ -21,8 +21,6 @@ export default class TodoItem {
 
   toggleComplete() {
     this.complete = !this.complete;
-    EventBus.dispatchEvent(new CustomEvent("updateItem"));
-    console.log("I was called")
     return;
   }
 
