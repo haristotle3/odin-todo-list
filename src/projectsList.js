@@ -12,6 +12,7 @@ export default class ProjectsList {
 
   addProject(newProject) {
     this.projects.push(newProject);
+    EventBus.dispatchEvent(new CustomEvent("updateProjList", { detail: this.projects }));
     return;
   }
 

@@ -1,8 +1,8 @@
 import EventBus from "./EventBus";
 import TodoItem from "./todoItem";
 export default class Project {
-  constructor(name) {
-    this.id = crypto.randomUUID();
+  constructor(id, name) {
+    this.id = id || crypto.randomUUID();
     this.name = name;
     this.todoItems = [];
 

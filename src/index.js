@@ -7,7 +7,10 @@ import ProjectsList from "./projectsList.js";
 import TodoItemDOMHandler from "./todoItemDOMHandler.js";
 import ProjectDOMHandler from "./projectDOMHandler.js";
 import ProjectsListDOMHandler from "./projectsListDOMHandler.js";
+import EventBus from "./EventBus.js";
+import "./localStorageHandler.js";
 import { format } from "date-fns";
+import LocalStorageHandler from "./localStorageHandler.js";
 
 const PJ = new Project(`Home`);
 const PJ2 = new Project(`Room`);
@@ -56,11 +59,7 @@ PJ.addTodoItem(
   )
 );
 
-PJ.addTodoItem(
-  new TodoItem(
-    `Test toggle Click`,
-  )
-);
+PJ.addTodoItem(new TodoItem(`Test toggle Click`));
 
 PJ3.addTodoItem(
   new TodoItem(
@@ -91,3 +90,6 @@ PLDM.refresh();
 
 const TDiv = new ProjectDOMHandler(PJ);
 const TodoDiv = new TodoItemDOMHandler(PJ.getAllTodos()[0]);
+
+const LSH = new LocalStorageHandler();
+LSH.initializeProjectList();
